@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://tamvelate.github.io/3d-file-tools/sitemap.xml
