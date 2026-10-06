@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About | 3D File Tools</title>
+<meta name="description" content="About 3D File Tools: free browser-based tools for opening, converting and compressing 3D files.">
+<link rel="canonical" href="https://tamvelate.github.io/3d-file-tools/about/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About | 3D File Tools">
+<meta property="og:description" content="About 3D File Tools: free browser-based tools for opening, converting and compressing 3D files.">
+<meta property="og:url" content="https://tamvelate.github.io/3d-file-tools/about/">
+<meta property="og:site_name" content="3D File Tools">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<!-- AdSense: paste the <script async src="https://pagead2.googlesyndication.com/..."> tag here after approval -->
+
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="../"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3 28 10v12L16 29 4 22V10z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M16 16 28 10 16 3 4 10z" fill="var(--select)" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M16 16v13" stroke="currentColor" stroke-width="2"/></svg><span>3D File Tools</span></a>
+<nav class="nav" aria-label="Main"><a href="../">Convert</a><a href="../viewer/">Viewer</a><a href="../compress-glb/">Compress GLB</a><a href="../formats/">Formats</a></nav>
+</div></header>
+<main>
+<div class="wrap"><section class="hero"><h1>About</h1></section><section class="block prose" style="padding-top:8px">
+<p>3D File Tools is a set of free tools for people who work with 3D files every day: product and footwear designers, 3D artists, engineers and anyone who has received a file their software can’t open.</p>
+<p>It started from a practical problem. Product teams pass models between CAD programs, rendering tools, web viewers and factories, and every step wants a different format. Most online converters upload your file to a server, which isn’t acceptable for unreleased product designs.</p>
+<p>Everything here runs inside your browser. Files are read and converted on your own computer and are never sent anywhere. The conversion engine is built on the open-source <a href="https://github.com/kovacsv/Online3DViewer">Online 3D Viewer</a> library (MIT license), with CAD support from OpenCascade.</p>
+<p>The site is made and maintained by Tam Vu. Suggestions for new formats and tools are welcome on the <a href="../contact/">contact page</a>.</p></section></div>
+</main>
+<footer class="site-foot"><div class="wrap">
+<span>© 2026 3D File Tools. Files are processed in your browser and never uploaded.</span>
+<nav aria-label="Site"><a href="../about/">About</a><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a><a href="../contact/">Contact</a></nav>
+</div></footer>
+<script>
+// Opened straight from disk (file://): folder links need an explicit index.html.
+if (location.protocol === 'file:') document.querySelectorAll('a[href]').forEach((a) => {
+  const h = a.getAttribute('href');
+  if (!/^[a-z]+:|^#/i.test(h) && h.endsWith('/')) a.setAttribute('href', h + 'index.html');
+});
+</script>
+
+</body>
+</html>
