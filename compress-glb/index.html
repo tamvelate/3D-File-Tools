@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compress GLB Online: Reduce glTF File Size | 3D File Tools</title>
+<meta name="description" content="Reduce GLB file size online. Merge duplicate textures and resize large ones while keeping meshes and materials identical. Runs in your browser, no upload.">
+<link rel="canonical" href="https://tamvelate.github.io/3D-File-Tools/compress-glb/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Compress GLB Online: Reduce glTF File Size | 3D File Tools">
+<meta property="og:description" content="Reduce GLB file size online. Merge duplicate textures and resize large ones while keeping meshes and materials identical. Runs in your browser, no upload.">
+<meta property="og:url" content="https://tamvelate.github.io/3D-File-Tools/compress-glb/">
+<meta property="og:site_name" content="3D File Tools">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<!-- AdSense: paste the <script async src="https://pagead2.googlesyndication.com/..."> tag here after approval -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"GLB Compressor","url":"https://tamvelate.github.io/3D-File-Tools/compress-glb/","description":"Reduce GLB file size online. Merge duplicate textures and resize large ones while keeping meshes and materials identical. Runs in your browser, no upload.","applicationCategory":"MultimediaApplication","operatingSystem":"Any (runs in a web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Will compression change the shape of my model?","acceptedAnswer":{"@type":"Answer","text":"No. Only embedded texture images are changed. Every mesh, material, node and animation keeps its original data, so the geometry is identical to the original."}},{"@type":"Question","name":"Which texture size should I pick?","acceptedAnswer":{"@type":"Answer","text":"2048 px is a good default for product viewers and e-commerce. Pick 1024 px for mobile AR or when the file must be very small. 4096 px keeps close-up detail for hero renders."}},{"@type":"Question","name":"Why did my file barely shrink?","acceptedAnswer":{"@type":"Answer","text":"If no texture is larger than the size you picked and no textures are duplicated, there is nothing to remove. In that case most of the size is geometry; reducing triangle count in your 3D program is the next step."}},{"@type":"Question","name":"Does it support Draco or KTX2?","acceptedAnswer":{"@type":"Answer","text":"Files that already use KTX2/Basis textures are kept as they are (duplicates are still merged). Draco-compressed geometry is passed through untouched."}}]}</script>
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="../"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3 28 10v12L16 29 4 22V10z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M16 16 28 10 16 3 4 10z" fill="var(--select)" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M16 16v13" stroke="currentColor" stroke-width="2"/></svg><span>3D File Tools</span></a>
+<nav class="nav" aria-label="Main"><a href="../">Convert</a><a href="../viewer/">Viewer</a><a href="../compress-glb/" aria-current="page">Compress GLB</a><a href="../formats/">Formats</a></nav>
+</div></header>
+<main>
+
+<div class="wrap">
+  <section class="hero">
+    <h1>Compress GLB files without touching the geometry</h1>
+    <p>Large GLB files are usually large because of textures. This tool merges duplicate textures and scales down oversized ones. Meshes, materials and parts stay exactly as they were.</p>
+  </section>
+  <div class="bench" data-compress>
+    <div class="viewport" tabindex="0" aria-label="Drop a GLB file here, or press Enter to choose one.">
+      <div class="empty">
+        <strong>Drop a .glb file here</strong>
+        <span>Files of several hundred megabytes work in a desktop browser.</span>
+        <button type="button" class="pick" tabindex="-1">Choose file</button>
+      </div>
+      <input type="file" accept=".glb" hidden>
+    </div>
+    <div class="props">
+      <div><h2>File</h2><div data-file><div class="file-meta">No file open</div></div></div>
+      <label class="field">Max texture size
+        <select data-maxdim>
+          <option value="1024">1024 px (mobile, AR)</option>
+          <option value="2048" selected>2048 px (web product viewer)</option>
+          <option value="4096">4096 px (close-up detail)</option>
+          <option value="0">Don’t resize, only merge duplicates</option>
+        </select>
+      </label>
+      <div class="compress-out">
+        <button type="button" class="btn" data-run disabled>Compress</button>
+        <div class="bar"><i data-bar></i></div>
+        <p class="msg" data-msg role="status"></p>
+        <dl class="stats" data-stats></dl>
+        <button type="button" class="btn" data-download hidden>Download compressed GLB</button>
+        <button type="button" class="btn secondary" data-open>Open a file</button>
+        <ul class="log" data-log aria-label="Progress log"></ul>
+      </div>
+      <p class="privacy-note">Your file stays on this computer. Nothing is uploaded.</p>
+    </div>
+  </div>
+  <div class="ad-slot" data-ad="compress-1"></div>
+  <section class="block prose">
+    <h2>How the compression works</h2>
+    <p>A GLB file is a container: a JSON description of the scene and one binary block holding vertex data and images. This tool rewrites only the image parts of that binary block.</p>
+    <ol class="steps">
+      <li>Identical textures, common when several materials reuse the same image, are stored once and shared.</li>
+      <li>Textures larger than the size you pick are scaled down and saved as lossless PNG. Fully opaque images drop their unused alpha channel.</li>
+      <li>Textures already within the limit are left byte-for-byte untouched, because re-encoding them in a browser would often make them larger.</li>
+    </ol>
+    <p>Need a GLB first? <a href="../">Convert your file to GLB</a>, then compress it here.</p>
+  </section>
+  <section class="block"><h2>Questions</h2><div class="faq"><details><summary>Will compression change the shape of my model?</summary><p>No. Only embedded texture images are changed. Every mesh, material, node and animation keeps its original data, so the geometry is identical to the original.</p></details><details><summary>Which texture size should I pick?</summary><p>2048 px is a good default for product viewers and e-commerce. Pick 1024 px for mobile AR or when the file must be very small. 4096 px keeps close-up detail for hero renders.</p></details><details><summary>Why did my file barely shrink?</summary><p>If no texture is larger than the size you picked and no textures are duplicated, there is nothing to remove. In that case most of the size is geometry; reducing triangle count in your 3D program is the next step.</p></details><details><summary>Does it support Draco or KTX2?</summary><p>Files that already use KTX2/Basis textures are kept as they are (duplicates are still merged). Draco-compressed geometry is passed through untouched.</p></details></div></section>
+</div>
+</main>
+<footer class="site-foot"><div class="wrap">
+<span>© 2026 3D File Tools. Files are processed in your browser and never uploaded.</span>
+<nav aria-label="Site"><a href="../about/">About</a><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a><a href="../contact/">Contact</a></nav>
+</div></footer>
+<script>
+// Opened straight from disk (file://): folder links need an explicit index.html.
+if (location.protocol === 'file:') document.querySelectorAll('a[href]').forEach((a) => {
+  const h = a.getAttribute('href');
+  if (!/^[a-z]+:|^#/i.test(h) && h.endsWith('/')) a.setAttribute('href', h + 'index.html');
+});
+</script>
+<script src="../assets/common.js"></script>
+<script src="../assets/compress.js"></script>
+</body>
+</html>

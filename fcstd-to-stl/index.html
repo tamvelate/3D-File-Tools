@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FCStd to STL Converter: Free, Online, No Upload | 3D File Tools</title>
+<meta name="description" content="Convert FCStd to STL online for free. Open .fcstd files in your browser, preview them in 3D and save as .stl. No upload, no sign-up.">
+<link rel="canonical" href="https://tamvelate.github.io/3D-File-Tools/fcstd-to-stl/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="FCStd to STL Converter: Free, Online, No Upload | 3D File Tools">
+<meta property="og:description" content="Convert FCStd to STL online for free. Open .fcstd files in your browser, preview them in 3D and save as .stl. No upload, no sign-up.">
+<meta property="og:url" content="https://tamvelate.github.io/3D-File-Tools/fcstd-to-stl/">
+<meta property="og:site_name" content="3D File Tools">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<!-- AdSense: paste the <script async src="https://pagead2.googlesyndication.com/..."> tag here after approval -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"FCStd to STL Converter","url":"https://tamvelate.github.io/3D-File-Tools/fcstd-to-stl/","description":"Convert FCStd to STL online for free. Open .fcstd files in your browser, preview them in 3D and save as .stl. No upload, no sign-up.","applicationCategory":"MultimediaApplication","operatingSystem":"Any (runs in a web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this FCStd to STL converter free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It runs in your browser, so there are no accounts, limits on the number of files, or watermarks."}},{"@type":"Question","name":"What does the STL file keep from my FCStd?","acceptedAnswer":{"@type":"Answer","text":"The geometry is always kept. STL also keeps the shape only. FCStd stores exact curved surfaces. To save as STL, they are turned into triangles (tessellated). The result looks the same but can no longer be edited as a CAD solid."}},{"@type":"Question","name":"Are my files uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Conversion runs inside your browser on your own computer. Your files never leave your device, which makes the tools safe to use with unreleased product designs."}},{"@type":"Question","name":"Is there a file size limit?","acceptedAnswer":{"@type":"Answer","text":"There is no fixed limit. The practical limit is your computer’s memory: files up to a few hundred megabytes work in a current desktop browser. Very large CAD assemblies can take a minute to tessellate."}}]}</script>
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="../"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3 28 10v12L16 29 4 22V10z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M16 16 28 10 16 3 4 10z" fill="var(--select)" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M16 16v13" stroke="currentColor" stroke-width="2"/></svg><span>3D File Tools</span></a>
+<nav class="nav" aria-label="Main"><a href="../" aria-current="page">Convert</a><a href="../viewer/">Viewer</a><a href="../compress-glb/">Compress GLB</a><a href="../formats/">Formats</a></nav>
+</div></header>
+<main>
+
+<div class="wrap">
+  <section class="hero">
+    <h1>Convert FCStd to STL</h1>
+    <p>Turn FreeCAD Document files into Stereolithography for 3D printing and slicers. Drop your .fcstd file below, check it in the viewer, then save it as STL. Nothing is uploaded.</p>
+  </section>
+  <div class="bench" data-bench>
+  <div class="viewport" tabindex="0" aria-label="3D viewport. Press Enter to choose a file, or drop files here.">
+    <div class="empty">
+      <strong>Drop a 3D file here</strong>
+      <span>STEP, IGES, 3DM, FBX, OBJ, STL, GLB, IFC and more. Add textures or a .zip for full materials.</span>
+      <button type="button" class="pick" tabindex="-1">Choose files</button>
+    </div>
+    <div class="vp-tools" hidden><label class="light">Light <input type="range" min="0.3" max="2.5" step="0.1" value="1" data-light aria-label="Light brightness"></label><button type="button" data-fit>Fit view</button><button type="button" data-full>Full screen</button></div>
+    <div class="status" aria-live="polite"></div>
+    <input type="file" multiple accept=".glb,.gltf,.obj,.stl,.ply,.off,.3dm,.step,.stp,.iges,.igs,.brep,.fcstd,.ifc,.fbx,.dae,.3ds,.3mf,.amf,.wrl,.zip,.mtl,.bin,.png,.jpg,.jpeg,.webp,.bmp,.tga" hidden>
+  </div>
+  <div class="props">
+    <div>
+      <h2>File</h2>
+      <div data-file><div class="file-meta">No file open</div></div>
+      <dl class="stats" data-stats></dl>
+    </div>
+    <div>
+      <h2 id="saveas">Save as</h2>
+      <div class="formats-pick" role="radiogroup" aria-labelledby="saveas"><label><input type="radio" name="fmt" value="glb"><span>GLB</span></label><label><input type="radio" name="fmt" value="gltf"><span>glTF</span></label><label><input type="radio" name="fmt" value="obj"><span>OBJ</span></label><label><input type="radio" name="fmt" value="stl" checked><span>STL</span></label><label><input type="radio" name="fmt" value="ply"><span>PLY</span></label><label><input type="radio" name="fmt" value="off"><span>OFF</span></label><label><input type="radio" name="fmt" value="3dm"><span>3DM</span></label></div>
+    </div>
+    <label class="field">Scale
+      <select data-scale>
+        <option value="1">Keep units</option>
+        <option value="0.001">mm → m (CAD to glTF)</option>
+        <option value="0.01">cm → m</option>
+        <option value="0.0254">inch → m</option>
+        <option value="1000">m → mm (glTF to CAD/print)</option>
+        <option value="25.4">inch → mm</option>
+      </select>
+    </label>
+    <div style="display:grid;gap:10px">
+      <button type="button" class="btn" data-convert disabled>Save as GLB</button>
+      <button type="button" class="btn secondary" data-open>Open a file</button>
+      <p class="msg" data-msg role="status"></p>
+    </div>
+    <p class="privacy-note">Your file stays on this computer. Nothing is uploaded.</p>
+  </div>
+</div>
+  <div class="ad-slot" data-ad="pair-1"></div>
+  <section class="block"><h2>Before you convert</h2><div class="notes"><p>FCStd stores exact curved surfaces. To save as STL, they are turned into triangles (tessellated). The result looks the same but can no longer be edited as a CAD solid.</p><p>STL has no colors, materials or textures, so only the shape is saved.</p></div></section>
+  <section class="block"><h2>How to convert FCStd to STL</h2><ol class="steps">
+<li>Drop your FCStd file onto the viewport, or click it to choose a file. Include texture files or a .zip if the model has them.</li>
+<li>Check the preview and the stats: mesh count, triangles and size.</li>
+<li>Pick STL under “Save as”, adjust the scale if needed, and click Save. The file downloads straight from your browser.</li>
+</ol></section>
+  <section class="block prose">
+    <h2>About the formats</h2>
+    <h3>FCStd</h3><p>FCStd is the native project file of FreeCAD, the open-source parametric CAD program.</p>
+    <h3>STL</h3><p>STL describes a surface as a plain list of triangles, with no colors, materials or units. It is the default input for 3D printing slicers.</p>
+  </section>
+  <section class="block"><h2>Questions</h2><div class="faq"><details><summary>Is this FCStd to STL converter free?</summary><p>Yes. It runs in your browser, so there are no accounts, limits on the number of files, or watermarks.</p></details><details><summary>What does the STL file keep from my FCStd?</summary><p>The geometry is always kept. STL also keeps the shape only. FCStd stores exact curved surfaces. To save as STL, they are turned into triangles (tessellated). The result looks the same but can no longer be edited as a CAD solid.</p></details><details><summary>Are my files uploaded anywhere?</summary><p>No. Conversion runs inside your browser on your own computer. Your files never leave your device, which makes the tools safe to use with unreleased product designs.</p></details><details><summary>Is there a file size limit?</summary><p>There is no fixed limit. The practical limit is your computer’s memory: files up to a few hundred megabytes work in a current desktop browser. Very large CAD assemblies can take a minute to tessellate.</p></details></div></section>
+  <section class="block"><h2>Related conversions</h2><ul class="pairs"><li><a href="../step-to-stl/">STEP to STL</a></li><li><a href="../iges-to-stl/">IGES to STL</a></li><li><a href="../3dm-to-stl/">3DM to STL</a></li><li><a href="../ply-to-stl/">PLY to STL</a></li><li><a href="../3mf-to-stl/">3MF to STL</a></li><li><a href="../fbx-to-stl/">FBX to STL</a></li><li><a href="../glb-to-stl/">GLB to STL</a></li><li><a href="../obj-to-stl/">OBJ to STL</a></li><li><a href="../wrl-to-stl/">WRL to STL</a></li></ul></section>
+</div>
+</main>
+<footer class="site-foot"><div class="wrap">
+<span>© 2026 3D File Tools. Files are processed in your browser and never uploaded.</span>
+<nav aria-label="Site"><a href="../about/">About</a><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a><a href="../contact/">Contact</a></nav>
+</div></footer>
+<script>
+// Opened straight from disk (file://): folder links need an explicit index.html.
+if (location.protocol === 'file:') document.querySelectorAll('a[href]').forEach((a) => {
+  const h = a.getAttribute('href');
+  if (!/^[a-z]+:|^#/i.test(h) && h.endsWith('/')) a.setAttribute('href', h + 'index.html');
+});
+</script>
+<script src="../assets/vendor/o3dv.min.js"></script>
+<script src="../assets/common.js"></script>
+<script src="../assets/converter.js"></script>
+</body>
+</html>
